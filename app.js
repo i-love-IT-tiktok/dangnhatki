@@ -39,12 +39,6 @@ function fileToBase64(file) {
     r.readAsDataURL(file);
   });
 }
-function calcAge(dobStr) {
-  if (!dobStr) return null;
-  const dob = new Date(dobStr);
-  const diff = Date.now() - dob.getTime();
-  return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-}
 
 // ===== AUTH UI =====
 function switchTab(tab) {
@@ -219,7 +213,7 @@ async function submitPost(e) {
 
     if (file) {
       if (file.size > CONFIG.MAX_FILE_MB * 1024 * 1024) {
-        throw new Error(`File quá lớn (max ${CONFIG.MAX_FILE_MB}MB)`);
+        throw new Error('File quá lớn (max ' + CONFIG.MAX_FILE_MB + 'MB)');
       }
       file_data = await fileToBase64(file);
       file_name = file.name;
@@ -242,7 +236,7 @@ async function submitPost(e) {
     try {
       setPosts(posts);
     } catch (err) {
-      throw new Error('Bộ nhớ đầy! Xóa bớt bài cũ hoặc file nhỏ hơn.');
+      throw new Error('Bộ nhớ đầy! Xóa bớt bài cũ hoặc dùng file nhỏ hơn.');
     }
 
     document.getElementById('content').value = '';
