@@ -1,0 +1,76 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bio Page</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="authScreen" class="auth-wrap">
+  <div class="auth-card">
+    <h2>✨ Bio Page</h2>
+    <p class="sub">Chia sẻ cảm nghĩ của bạn</p>
+
+    <div class="auth-tabs">
+      <button id="tabLogin" class="active" onclick="switchTab('login')">Đăng nhập</button>
+      <button id="tabRegister" onclick="switchTab('register')">Đăng ký</button>
+    </div>
+
+    <div id="authError" class="auth-error"></div>
+
+    <form id="loginForm" onsubmit="doLogin(event)">
+      <div class="form-group">
+        <input type="text" id="loginUser" placeholder="Tên đăng nhập" required>
+      </div>
+      <div class="form-group">
+        <input type="password" id="loginPass" placeholder="Mật khẩu" required>
+      </div>
+      <button type="submit" class="btn-full">Đăng nhập</button>
+    </form>
+
+    <form id="registerForm" class="hidden" onsubmit="doRegister(event)">
+      <div class="form-group">
+        <input type="text" id="regUser" placeholder="Tên đăng nhập" required>
+      </div>
+      <div class="form-group">
+        <input type="password" id="regPass" placeholder="Mật khẩu" required>
+      </div>
+      <div class="form-group">
+        <label style="font-size:13px;color:#666;display:block;margin-bottom:6px;">Ngày sinh</label>
+        <input type="date" id="regDob" required>
+      </div>
+      <button type="submit" class="btn-full">Tạo tài khoản</button>
+    </form>
+  </div>
+</div>
+
+<div id="appScreen" class="container hidden">
+  <header>
+    <h1>✨ Bio Page</h1>
+    <div class="user-bar">
+      <div class="u-avatar" id="myAvatar"></div>
+      <span class="u-name" id="myName"></span>
+      <button onclick="doLogout()">Đăng xuất</button>
+    </div>
+  </header>
+
+  <div class="card">
+    <div class="form-group">
+      <textarea id="content" placeholder="Bạn đang nghĩ gì?" maxlength="2000"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="file" id="file" accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.txt,.zip">
+    </div>
+    <button onclick="submitPost(event)">🚀 Đăng bài</button>
+  </div>
+
+  <div id="posts"></div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
